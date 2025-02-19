@@ -1,5 +1,5 @@
 <template>
   <main>
-    <TheKeyboard />
+    <GameBoard />
   </main>
 </template>

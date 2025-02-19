@@ -1,0 +1,7 @@
+:root {
+    --game-max-width: 500px;
+}
+
+.game-board {
+    max-width: var(--game-max-width);
+}

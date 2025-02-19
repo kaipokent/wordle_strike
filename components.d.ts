@@ -8,7 +8,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('./src/components/ui/button/Button.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    TheKeyboard: typeof import('./src/components/TheKeyboard.vue')['default']
+    GameBoard: typeof import('./src/components/Game/GameBoard.vue')['default']
+    GameKeyboard: typeof import('./src/components/Game/GameKeyboard.vue')['default']
+    GameTile: typeof import('./src/components/Game/GameTile.vue')['default']
   }
 }
