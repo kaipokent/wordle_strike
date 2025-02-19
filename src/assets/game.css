@@ -2,6 +2,11 @@
     --game-max-width: 500px;
 }
 
-.game-board {
+.game-container {
     max-width: var(--game-max-width);
+}
+
+.game-board {
+    width: 350px;
+    height: 420px;
 }

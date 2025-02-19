@@ -17,8 +17,18 @@ const rows: string[] = ['q w e r t y u i o p', 'a s d f g h j k l', 'enter z x c
         ]"
         variant="keyboard-default"
       >
-        <CornerDownLeft v-if="letter === 'enter'" aria-label="enter" class="w-6! h-6!" />
-        <Delete v-else-if="letter === 'delete'" aria-label="delete" class="w-6! h-6!" />
+        <CornerDownLeft
+          v-if="letter === 'enter'"
+          aria-label="enter"
+          class="w-6! h-6!"
+          :stroke-width="2.5"
+        />
+        <Delete
+          v-else-if="letter === 'delete'"
+          aria-label="delete"
+          class="w-6! h-6!"
+          :stroke-width="2.5"
+        />
         <template v-else>{{ letter.toUpperCase() }}</template>
       </Button>
       <div class="spacer invisible" v-if="i === 1"></div>
