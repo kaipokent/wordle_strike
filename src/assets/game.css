@@ -10,3 +10,7 @@
     width: 350px;
     height: 420px;
 }
+
+.game-tile {
+    @apply flex flex-1 justify-center items-center border-2;
+}

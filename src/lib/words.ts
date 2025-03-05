@@ -1,3 +1,14 @@
+export const enum LetterState {
+  INITIAL = '',
+  CORRECT = 'correct',
+  PRESENT = 'present',
+  ABSENT = 'absent',
+}
+export type Letter = { letter: string; state: LetterState }
+
+export const WORD_LENGTH = 5
+export const MAX_GUESSES = 6
+
 // copied from Wordle source
 const answers = [
   'cigar',
@@ -12976,5 +12987,10 @@ const allowedGuesses = [
   'zymes',
   'zymic',
 ]
+
+export const getRandomAnswer = () => {
+  const randomIndex = Math.floor(Math.random() * answers.length)
+  return answers[randomIndex]
+}
 
 export const allWords = [...answers, ...allowedGuesses]

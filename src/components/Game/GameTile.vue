@@ -1,5 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { Letter } from '@/lib/words.ts'
+
+defineProps<{ tile: Letter }>()
+</script>
 
 <template>
-  <div class="game-tile flex-1 border-2"><slot></slot></div>
+  <div class="game-tile text-4xl font-bold">
+    {{ tile.letter }}
+  </div>
 </template>

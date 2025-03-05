@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('./src/components/ui/button/Button.vue')['default']
     GameBoard: typeof import('./src/components/Game/GameBoard.vue')['default']
+    GameBoardRow: typeof import('./src/components/Game/GameBoardRow.vue')['default']
     GameKeyboard: typeof import('./src/components/Game/GameKeyboard.vue')['default']
     GameTile: typeof import('./src/components/Game/GameTile.vue')['default']
   }
