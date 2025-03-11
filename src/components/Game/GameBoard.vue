@@ -16,6 +16,11 @@ const currentRow = ref(board.value[0])
 const currentTileIndex = ref(0)
 const allowInput = ref(true)
 
+const currentWord = computed(() => currentRow.value.reduce((acc, cur) => acc + cur.letter, ''))
+const isAcceptableWord = computed(
+  () => currentWord.value.length === WORD_LENGTH && allWords.includes(currentWord.value),
+)
+
 const fillTile = (key: string) => {
   const lastIndex = WORD_LENGTH - 1
 
@@ -33,9 +38,8 @@ const fillTile = (key: string) => {
     if (currentTileIndex.value < lastIndex) {
       currentTileIndex.value++
     } else {
-      const word = currentRow.value.reduce((acc, cur) => acc + cur.letter, '')
       // TODO: Check if this is an acceptable word. If not, shake and highlight red
-      console.log('Is a real word?', allWords.includes(word))
+      console.log('Is a real word?', isAcceptableWord.value)
     }
   }
 }
@@ -73,7 +77,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col justify-center">
     <div class="game-board self-center flex flex-col gap-1 p-2.5">
       <GameBoardRow v-for="(row, i) in board" :key="`row ${i}`" :row="row" :rowNum="i" />
     </div>
