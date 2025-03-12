@@ -5,7 +5,7 @@ defineProps<{ tile: Letter }>()
 </script>
 
 <template>
-  <div class="game-tile text-4xl font-bold">
-    {{ tile.letter }}
+  <div :class="['game-tile text-4xl font-bold text-zinc-700', tile.state]">
+    {{ tile.letter.toUpperCase() }}
   </div>
 </template>

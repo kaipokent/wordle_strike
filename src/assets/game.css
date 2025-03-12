@@ -1,5 +1,6 @@
 :root {
     --game-max-width: 500px;
+    --color-present: oklch(0.769 0.115 96.668);
 }
 
 .game-container {
@@ -13,4 +14,24 @@
 
 .game-tile {
     @apply flex flex-1 justify-center items-center border-2;
+}
+
+.correct, .present, .absent, .error {
+    color: var(--color-black) !important;
+}
+
+.correct {
+    background-color: var(--color-lime-600);
+}
+
+.present {
+    background-color: var(--color-present);
+}
+
+.absent {
+    background-color: var(--color-slate-300);
+}
+
+.error {
+    background-color: var(--color-red-500);
 }

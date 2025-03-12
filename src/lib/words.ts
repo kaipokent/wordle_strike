@@ -3,6 +3,7 @@ export const enum LetterState {
   CORRECT = 'correct',
   PRESENT = 'present',
   ABSENT = 'absent',
+  ERROR = 'error',
 }
 export type Letter = { letter: string; state: LetterState }
 
