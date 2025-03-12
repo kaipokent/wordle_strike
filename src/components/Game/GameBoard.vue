@@ -100,8 +100,8 @@ const completeRow = () => {
   guesses.value.push(currentWord.value)
   const matchesAnswer = currentWord.value === answer.value
   if (matchesAnswer) {
-    alert('Woot, woot. You did it!')
     allowInput.value = false
+    alert('Woot, woot. You did it!')
   } else if (currentRowIndex.value < WORD_LENGTH) {
     currentRowIndex.value++
     currentTileIndex.value = 0

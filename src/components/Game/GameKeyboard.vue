@@ -32,7 +32,9 @@ const rows: string[] = ['q w e r t y u i o p', 'a s d f g h j k l', 'delete z x 
           class="w-6! h-6!"
           :stroke-width="2.5"
         />
-        <template v-else>{{ key.toUpperCase() }}</template>
+        <span :class="{ 'sr-only': key === 'enter' || key === 'delete' }">{{
+          key.toUpperCase()
+        }}</span>
       </Button>
       <div class="spacer invisible" v-if="i === 1"></div>
     </div>
