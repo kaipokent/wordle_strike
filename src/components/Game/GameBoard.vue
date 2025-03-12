@@ -136,7 +136,6 @@ onUnmounted(() => {
     <div class="game-board self-center flex flex-col gap-1 p-2.5">
       <GameBoardRow v-for="(row, i) in board" :key="`row ${i}`" :row="row" :rowNum="i" />
     </div>
-    {{ answer }}
     <GameKeyboard @key-click="onKey" />
   </div>
 </template>
