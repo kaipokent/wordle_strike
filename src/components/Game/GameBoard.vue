@@ -123,7 +123,6 @@ const completeRow = () => {
 }
 
 const onKey = (key: string) => {
-  console.log(key)
   if (!allowInput.value) return
   if (/^[a-zA-Z]$/.test(key)) {
     fillTile(key.toLowerCase())
