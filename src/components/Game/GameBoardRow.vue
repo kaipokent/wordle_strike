@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Letter } from '@/lib/words.ts'
+import type { Letter } from '@/lib/constants.ts'
 
 const props = defineProps<{ row: Letter[]; rowNum: number }>()
 </script>

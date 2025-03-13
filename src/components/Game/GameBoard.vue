@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { Letter } from '@/lib/words.ts'
-import { allWords, getRandomAnswer, LetterState, MAX_GUESSES, WORD_LENGTH } from '@/lib/words.ts'
+import type { KeyboardState, Letter } from '@/lib/constants.ts'
+import { LETTERS, LetterState, MAX_GUESSES, WORD_LENGTH } from '@/lib/constants.ts'
+import { allWords, getRandomAnswer } from '@/lib/words.ts'
 import GameBoardRow from '@/components/Game/GameBoardRow.vue'
 
 type Board = Array<Array<Letter>>
@@ -18,6 +19,9 @@ const currentTileIndex = ref(0)
 const allowInput = ref(true)
 const inErrorState = ref(false)
 const guesses = ref<string[]>([])
+const keyboardState = ref<KeyboardState>(
+  LETTERS.split('').reduce((acc, letter) => ({ ...acc, [letter]: LetterState.INITIAL }), {}),
+)
 
 const currentRow = computed(() => board.value[currentRowIndex.value])
 const currentWord = computed(() => currentRow.value.reduce((acc, cur) => acc + cur.letter, ''))
@@ -89,13 +93,20 @@ const completeRow = () => {
   currentRow.value.forEach((letterState, i) => {
     if (letterState.letter === answer.value[i]) {
       letterState.state = LetterState.CORRECT
+      keyboardState.value[letterState.letter] = LetterState.CORRECT
     } else if (answer.value.indexOf(letterState.letter) > -1) {
       letterState.state = LetterState.PRESENT
+      if (keyboardState.value[letterState.letter] !== LetterState.CORRECT) {
+        keyboardState.value[letterState.letter] = LetterState.PRESENT
+      }
     } else {
       letterState.state = LetterState.ABSENT
+      if (keyboardState.value[letterState.letter] === LetterState.INITIAL) {
+        keyboardState.value[letterState.letter] = LetterState.ABSENT
+      }
     }
   })
-  // Update keyboard letter state
+
   // Check is word matches answer
   guesses.value.push(currentWord.value)
   const matchesAnswer = currentWord.value === answer.value
@@ -112,12 +123,13 @@ const completeRow = () => {
 }
 
 const onKey = (key: string) => {
+  console.log(key)
   if (!allowInput.value) return
   if (/^[a-zA-Z]$/.test(key)) {
     fillTile(key.toLowerCase())
-  } else if (key === 'Backspace' || key === 'delete') {
+  } else if (key.toLowerCase() === 'backspace' || key.toLowerCase() === 'delete') {
     clearTile()
-  } else if (key === 'Enter') {
+  } else if (key.toLowerCase() === 'enter') {
     completeRow()
   }
 }
@@ -136,6 +148,6 @@ onUnmounted(() => {
     <div class="game-board self-center flex flex-col gap-1 p-2.5">
       <GameBoardRow v-for="(row, i) in board" :key="`row ${i}`" :row="row" :rowNum="i" />
     </div>
-    <GameKeyboard @key-click="onKey" />
+    <GameKeyboard @key-click="onKey" :keyboardState="keyboardState" />
   </div>
 </template>

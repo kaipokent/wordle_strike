@@ -1,15 +1,3 @@
-export const enum LetterState {
-  INITIAL = '',
-  CORRECT = 'correct',
-  PRESENT = 'present',
-  ABSENT = 'absent',
-  ERROR = 'error',
-}
-export type Letter = { letter: string; state: LetterState }
-
-export const WORD_LENGTH = 5
-export const MAX_GUESSES = 6
-
 // copied from Wordle source
 const answers = [
   'cigar',

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { CornerDownLeft, Delete } from 'lucide-vue-next'
+import type { KeyboardState } from '@/lib/constants.ts'
 
+defineProps<{ keyboardState: KeyboardState }>()
 defineEmits(['keyClick'])
 
 const rows: string[] = ['q w e r t y u i o p', 'a s d f g h j k l', 'delete z x c v b n m enter']
@@ -16,25 +18,16 @@ const rows: string[] = ['q w e r t y u i o p', 'a s d f g h j k l', 'delete z x 
         :class="[
           'cursor-pointer text-xl min-h-14 p-0 flex-1',
           { 'wide-key': key === 'enter' || key === 'delete' },
+          keyboardState[key] || '',
         ]"
         variant="keyboard-default"
         @click="$emit('keyClick', key)"
       >
-        <CornerDownLeft
-          v-if="key === 'enter'"
-          aria-label="enter"
-          class="w-6! h-6!"
-          :stroke-width="2.5"
-        />
-        <Delete
-          v-else-if="key === 'delete'"
-          aria-label="delete"
-          class="w-6! h-6!"
-          :stroke-width="2.5"
-        />
-        <span :class="{ 'sr-only': key === 'enter' || key === 'delete' }">{{
-          key.toUpperCase()
-        }}</span>
+        <CornerDownLeft v-if="key === 'enter'" class="w-6! h-6!" :stroke-width="2.5" />
+        <Delete v-else-if="key === 'delete'" class="w-6! h-6!" :stroke-width="2.5" />
+        <span :class="{ 'sr-only': key === 'enter' || key === 'delete' }">
+          {{ key.toUpperCase() }}
+        </span>
       </Button>
       <div class="spacer invisible" v-if="i === 1"></div>
     </div>
